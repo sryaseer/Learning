@@ -1,0 +1,79 @@
+cat .bash_profile 
+
+# Get the aliases and functions 
+
+if [ -f ~/.bashrc ]; then 
+
+        . ~/.bashrc 
+
+fi 
+
+ 
+
+export HISTFILE="$HOME/.bash_history"   # Ensure HISTFILE is always set for login shells 
+
+export AWS_CLI_AUTO_PROMPT=on-partial   # Enable AWS CLI auto prompt by default 
+
+ 
+
+alias aws_prompt_on='export AWS_CLI_AUTO_PROMPT=on-partial; echo -e "\n\033[0;32m[INFO] AWS_CLI_AUTO_PROMPT is now ENABLED (on-partial)\033[0m\n"'  
+
+alias aws_prompt_off='export AWS_CLI_AUTO_PROMPT=off; echo -e "\n\033[0;31m[INFO] AWS_CLI_AUTO_PROMPT is now DISABLED\033[0m\n"' 
+
+ 
+
+# Force bash session vars 
+
+if [ -x /bin/bash ]; then 
+
+    export SHELL=/bin/bash 
+
+    export 0=-bash 
+
+fi 
+
+ 
+
+# Show header message once at login (green text) 
+
+if [[ $- == *i* ]]; then 
+
+    GREEN="\033[0;32m" 
+
+    RED="\033[0;31m" 
+
+    RESET="\033[0m" 
+
+  
+
+    echo -e "\n${GREEN}===== You are now running: $0 (SHELL=$SHELL) =====${RESET}\n" 
+
+  
+
+    echo -e "AWS CLI auto-prompt is currently set to: ${GREEN}${AWS_CLI_AUTO_PROMPT:-off}${RESET}" 
+
+    echo -e "Type \`${RED}aws_prompt_off${RESET}\` to disable auto-prompt, or \`${GREEN}aws_prompt_on${RESET}\` to enable it again.\n" 
+
+fi 
+
+ 
+
+# User specific environment and startup programs 
+
+alias kr1="kubectl -n tpodev01-runtime --kubeconfig /home/syaseer1/.kube/dev-tpo-eks-dev01" 
+
+alias kr2="kubectl -n tponpe01-runtime --kubeconfig /home/syaseer1/.kube/dev-tpo-eks-npe01" 
+
+alias hr1="helm -n tpodev01-runtime --kubeconfig /home/syaseer1/.kube/dev-tpo-eks-dev01" 
+
+alias kr3="kubectl -n tpopet01-runtime --kubeconfig /home/syaseer1/.kube/dev-tpo-eks-pet01" 
+
+alias hr2="helm -n tponpe01-runtime --kubeconfig /home/syaseer1/.kube/dev-tpo-eks-npe01" 
+
+alias ki1="kubectl -n istio-system --kubeconfig /home/syaseer1/.kube/dev-tpo-eks-dev01" 
+
+alias km1="kubectl -n monitoring --kubeconfig /home/syaseer1/.kube/dev-tpo-eks-dev01" 
+
+alias hm1="helm -n monitoring --kubeconfig /home/syaseer1/.kube/dev-tpo-eks-dev01" 
+
+ 
